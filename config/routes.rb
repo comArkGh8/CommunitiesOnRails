@@ -4,8 +4,19 @@ Rails.application.routes.draw do
   resources :communities do
     
     member do
-      post :create
+      post :create_resident
+      post :edit_resident
       get :residents
+      get :articles
+      
+      resources :residents do
+        member do
+          post :create_article
+          post :edit_article
+          get :articles
+        end
+      end
+      
     end
     
     collection do
@@ -13,7 +24,7 @@ Rails.application.routes.draw do
     end
     
 
-    end
+  end
   
 
   # You can have the root of your site routed with "root"
