@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20171218145133) do
     t.bigint "community_id"
     t.string "form"
     t.string "description"
+    t.string "status"
     t.index ["community_id"], name: "index_articles_on_community_id"
     t.index ["resident_id"], name: "index_articles_on_resident_id"
   end

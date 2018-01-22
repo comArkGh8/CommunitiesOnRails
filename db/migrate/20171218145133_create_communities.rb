@@ -20,6 +20,7 @@ class CreateCommunities < ActiveRecord::Migration[5.1]
       t.belongs_to :community, index: true
       t.string :form
       t.string :description
+      t.string :status
     end
   end
 end

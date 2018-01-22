@@ -26,7 +26,9 @@ saul =
 me = commune.residents.create!(saul)
 
 kapital= 
-  { :community => commune,  :form => 'book' , :description => 'Das Kapital'}
+  { :community => commune,  :form => 'book' , :description => 'Das Kapital',
+  :status => 'available'
+  }
 
 me.articles.create!(kapital)
 

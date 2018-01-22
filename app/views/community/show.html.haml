@@ -2,7 +2,7 @@
 -# = shows a community
 
 
-%h2 Details for @commune.name:
+%h2 Details for #{@commune.name}:
 
 
 
@@ -10,15 +10,20 @@
 %table#commune
   %thead
     %tr
-      %th All residents #sort by!!!
-      %th Articles available
+      %th Items available
+      %th Category
+      %th Owner 
+      %th Status
+      
   %tbody
     - @commune.residents.each do |resident|
-      %tr
-        %td = resident
-        - resident.articles.each do |article|
-        %tr 
-          %td = article 
+      - resident.articles.each do |article|
+        %tr
+          %td= article.description
+          %td= article.form
+          %td= resident
+          %td= article.status
+
 
 
 = link_to 'Add new resident', new_resident_path    
