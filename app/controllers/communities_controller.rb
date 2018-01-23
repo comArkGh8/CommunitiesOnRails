@@ -10,6 +10,8 @@ class CommunitiesController < ApplicationController
     # will render app/views/community/show.<extension> by default
   end
   
-  # now do view!
+  def index
+    #need to verify password!
+  end
  
 end

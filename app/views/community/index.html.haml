@@ -1,0 +1,16 @@
+-# = gives page to add, view, edit a community
+
+
+%h1 Welcome to Communities on Rails!
+
+%center
+    %txt Enter the name of the community to which you belong and the password:
+    %br
+
+    = form_tag community_path do
+        = label :commune, :name, 'Community name'
+        = text_field :commune, :name
+        = password_field :password, 'Password'
+
+        = submit_tag 'Submit'
+    
