@@ -6,11 +6,13 @@
 %center
     %txt Enter the name of the community to which you belong and the password:
     %br
+    %br
 
-    = form_tag community_path do
+    = form_tag communities_path do
         = label :commune, :name, 'Community name'
         = text_field :commune, :name
         = password_field :password, 'Password'
 
+        %br
         = submit_tag 'Submit'
     

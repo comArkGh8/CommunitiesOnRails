@@ -7,11 +7,12 @@ class CommunitiesController < ApplicationController
   def show
     id = params[:id] # retrieve community ID from URI route
     @commune = Community.find(id) # look up commune by unique ID
-    # will render app/views/community/show.<extension> by default
+    # will render app/views/communities/show.<extension> by default
   end
   
   def index
     #need to verify password!
+    @communes = Community.all
   end
  
 end
