@@ -24,11 +24,12 @@ ActiveRecord::Schema.define(version: 20171218145133) do
 
   create_table "communities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
-    t.string "login_pwd"
+    t.string "password"
     t.string "street"
     t.string "number"
     t.string "residents"
     t.string "salt"
+    t.string "password_digest"
   end
 
   create_table "residents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

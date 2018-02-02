@@ -1,8 +1,5 @@
 class CommunitiesController < ApplicationController
 
-  def community_params
-    params.require(:name).permit(:login_pwd, :password_confirmation, :street, :number)
-  end
 
   def show
     id = params[:id] # retrieve community ID from URI route
@@ -18,7 +15,9 @@ class CommunitiesController < ApplicationController
   end
   
   def create
-    @commune = Community.new(params[:name])
+    @commune = Community.new(community_params)
+    puts @commune.password
+    puts @commune.name
     if @commune.save
       flash[:notice] = "You signed up successfully"
       flash[:color]= "valid"
@@ -28,5 +27,16 @@ class CommunitiesController < ApplicationController
     end
     render "index"
   end
+  
+  private
+  
+      def community_params
+        params.require(:commune).permit(:name,
+                                        :password,
+                                        :password_confirmation,
+                                        :password_digest,
+                                        :street,
+                                        :number)
+      end
  
 end

@@ -11,7 +11,7 @@
     = form_tag communities_path do
         = label :commune, :name, 'Community name'
         = text_field :commune, :name
-        = password_field :password, 'Password'
+        = password_field :password_2, 'Password'
 
         %br
         = submit_tag 'Submit'
@@ -35,7 +35,7 @@
         %p 
             = f.label :password
             %br
-            = f.text_field  :login_pwd
+            = f.text_field  :password
         
         %p
             = f.label :password_confirmation
