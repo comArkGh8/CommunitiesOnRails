@@ -1,7 +1,7 @@
 class CommunitiesController < ApplicationController
 
   def community_params
-    params.require(:name).permit(:street, :number)
+    params.require(:name).permit(:login_pwd, :password_confirmation, :street, :number)
   end
 
   def show
@@ -18,7 +18,7 @@ class CommunitiesController < ApplicationController
   end
   
   def create
-    @commune = Community.new(params[:commune])
+    @commune = Community.new(params[:name])
     if @commune.save
       flash[:notice] = "You signed up successfully"
       flash[:color]= "valid"
