@@ -16,8 +16,6 @@ class CommunitiesController < ApplicationController
   
   def create
     @commune = Community.new(community_params)
-    puts @commune.password
-    puts @commune.name
     if @commune.save
       flash[:notice] = "You signed up successfully"
       flash[:color]= "valid"

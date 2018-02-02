@@ -2,11 +2,9 @@ class CreateCommunities < ActiveRecord::Migration[5.1]
   def change
     create_table :communities do |t|
       t.string :name
-      t.string :password
       t.string :street
       t.string :number
       t.string :residents
-      t.string :salt #for encryption
       t.string :password_digest
     end
     
