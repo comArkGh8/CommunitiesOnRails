@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20171218145133) do
     t.string "street"
     t.string "number"
     t.string "residents"
+    t.string "salt"
   end
 
   create_table "residents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

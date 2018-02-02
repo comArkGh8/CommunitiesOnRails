@@ -6,6 +6,7 @@ class CreateCommunities < ActiveRecord::Migration[5.1]
       t.string :street
       t.string :number
       t.string :residents
+      t.string :salt #for encryption
     end
     
     create_table :residents do |t|
