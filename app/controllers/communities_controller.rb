@@ -23,13 +23,19 @@ class CommunitiesController < ApplicationController
   def create
     @commune = Community.new(community_params)
     if @commune.save
-      flash[:notice] = "You signed up successfully"
-      flash[:color]= "valid"
+      flash[:notice] = "You signed up successfully."
+      flash[:notice2] = "#{@commune.name} was successfully created!"
+      redirect_to community_path(@commune)
     else
-      flash[:notice] = "Data is invalid"
-      flash[:color]= "invalid"
+      render "new"
     end
-    render "new"
+
+  end
+  
+  def show
+    id = params[:id] # retrieve ID from URI route
+    @commune = Community.find(id) # look up community by unique ID
+    # will render app/views/communities/show.<extension> by default
   end
   
   private

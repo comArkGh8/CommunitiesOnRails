@@ -1,6 +1,9 @@
 
 -# = shows a community
 
+- [:notice, :notice2].each do |key|
+  - unless flash[key].blank?
+    %p{ :class => "flash #{key}" }= flash[key]
 
 %h2 Details for #{@commune.name}:
 
