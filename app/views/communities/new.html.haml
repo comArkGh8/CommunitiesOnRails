@@ -1,16 +1,35 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+-# = gives page to add a community
+
+
+%h1 Register your community:
+
+
+%center
+    %br
+    %br
+
+    = form_for :commune, :url => {:controller => 'communities', :action => 'create'} do |f|
+        %p
+            = f.label :name
+            %br
+            = f.text_field  :name
+        
+        %p 
+            = f.label :password
+            %br
+            = f.text_field  :password
+        
+        %p
+            = f.label :password_confirmation
+            %br
+            = f.password_field :password_confirmation
+        
+        %p.button
+            = f.submit 'Create Community'
+
+-# = check for errors:
+
+- if @commune.errors.any?
+    %ul.errors
+        -@commune.errors.full_messages.each do |msg|
+            %li= msg

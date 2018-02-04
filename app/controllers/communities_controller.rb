@@ -7,6 +7,12 @@ class CommunitiesController < ApplicationController
     # will render app/views/communities/show.<extension> by default
   end
   
+  def new
+    # want to be able to search
+    # or create new
+    @commune=Community.new
+  end
+  
   def index
     # want to be able to search
     # or create new
@@ -23,7 +29,7 @@ class CommunitiesController < ApplicationController
       flash[:notice] = "Data is invalid"
       flash[:color]= "invalid"
     end
-    render "index"
+    render "new"
   end
   
   private

@@ -26,28 +26,5 @@
     %br
     %br
 
-    = form_for :commune, :url => {:controller => 'communities', :action => 'create'} do |f|
-        %p
-            = f.label :name
-            %br
-            = f.text_field  :name
-        
-        %p 
-            = f.label :password
-            %br
-            = f.text_field  :password
-        
-        %p
-            = f.label :password_confirmation
-            %br
-            = f.password_field :password_confirmation
-        
-        %p.button
-            = f.submit 'Create Community'
-
--# = check for errors:
-
-- if @commune.errors.any?
-    %ul.errors
-        -@commune.errors.full_messages.each do |msg|
-            %li= msg
+    =form_tag new_community_path, method: :get, id: 'create_button' do
+        =submit_tag 'create community', id: 'creation', class: 'button_class'
