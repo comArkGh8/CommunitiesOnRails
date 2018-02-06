@@ -15,9 +15,9 @@
     %tr
       %th Items available
       %th Category
-      %th Owner 
+      %th Owner
       %th Status
-      
+
   %tbody
     - @commune.residents.each do |resident|
       - resident.articles.each do |article|
@@ -29,8 +29,4 @@
 
 
 
-= link_to 'Add new resident', new_resident_path    
-
-
-
-
+= link_to 'Add new resident', new_resident_path(@commune)    

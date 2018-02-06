@@ -1,0 +1,36 @@
+-# = gives page to add a resident to a specific community
+-# community_id should be sent through call to resident controller
+
+
+%h1 Register a new member of the #{@commune.name} community:
+
+
+%center
+    %br
+    %br
+
+    = form_for :person, :url => {:controller => 'residents', :action => 'create'} do |f|
+        %p
+            = f.label :name
+            %br
+            = f.text_field  :name
+
+        %p
+            = f.label :password
+            %br
+            = f.text_field  :password
+
+        %p
+            = f.label :password_confirmation
+            %br
+            = f.password_field :password_confirmation
+
+        %p.button
+            = f.submit 'Register'
+
+-# = check for errors:
+
+- if @person.errors.any?
+    %ul.errors
+        -@person.errors.full_messages.each do |msg|
+            %li= msg

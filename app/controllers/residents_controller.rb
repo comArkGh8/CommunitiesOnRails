@@ -10,7 +10,9 @@ class ResidentsController < ApplicationController
   end
 
   def new
+    commune_id = params[:id] # retrieve community ID from URI route
     @person=Resident.new
+    @commune = Community.find(commune_id)
   end
 
   def index
@@ -20,6 +22,7 @@ class ResidentsController < ApplicationController
 
   def create
     @person = Resident.new(resident_params)
+    @commune = Community.find(@person.community_id)
     if @person.save
       flash[:notice] = "You signed up successfully."
       flash[:notice2] = "#{@person.name} was added to the ADD COMMUNE!!!"
