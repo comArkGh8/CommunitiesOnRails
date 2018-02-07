@@ -9,7 +9,7 @@
     %br
     %br
 
-    = form_for :person, :url => {:controller => 'residents', :action => 'create'} do |f|
+    = form_for @resident, :url => {:controller => 'residents', :action => 'create'} do |f|
         %p
             = f.label :name
             %br
@@ -25,12 +25,15 @@
             %br
             = f.password_field :password_confirmation
 
+        -# pass on the community
+        = hidden_field_tag :community_id, @commune.id
+
         %p.button
             = f.submit 'Register'
 
 -# = check for errors:
 
-- if @person.errors.any?
+- if @resident.errors.any?
     %ul.errors
-        -@person.errors.full_messages.each do |msg|
+        -@resident.errors.full_messages.each do |msg|
             %li= msg

@@ -11,7 +11,7 @@ class ResidentsController < ApplicationController
 
   def new
     commune_id = params[:id] # retrieve community ID from URI route
-    @person=Resident.new
+    @resident=Resident.new
     @commune = Community.find(commune_id)
   end
 
@@ -21,8 +21,12 @@ class ResidentsController < ApplicationController
   end
 
   def create
+    commune_id = params[:community_id]
+    @commune = Community.find(commune_id)
+
     @person = Resident.new(resident_params)
-    @commune = Community.find(@person.community_id)
+    @person.community_id = commune_id
+
     if @person.save
       flash[:notice] = "You signed up successfully."
       flash[:notice2] = "#{@person.name} was added to the ADD COMMUNE!!!"
@@ -38,7 +42,7 @@ class ResidentsController < ApplicationController
   private
 
       def resident_params
-        params.require(:person).permit(:name,
+        params.require(:resident).permit(:name,
                                         :articles,
                                         :community_id,
                                         :password,
