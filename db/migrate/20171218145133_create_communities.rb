@@ -13,6 +13,8 @@ class CreateCommunities < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :articles
       t.string :password_digest
+      t.string :phone
+      t.string :email
     end
 
 

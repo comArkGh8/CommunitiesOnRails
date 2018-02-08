@@ -13,6 +13,7 @@ class Resident < ActiveRecord::Base
   validates_format_of :password, :with => LOGIN_PWD_REGEX, :on => :create
 
 
+  # if desired can also validate the form of email and/or phone.
 
 
 

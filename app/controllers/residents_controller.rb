@@ -5,8 +5,8 @@ class ResidentsController < ApplicationController
 
   def show
     id = params[:id] # retrieve resident ID from URI route
-    @person = Resident.find(id) # look up commune by unique ID
-    # will render app/views/residents/show.<extension> by default
+    @person = Resident.find(id) # look up resident by unique ID
+    @commune = Community.find(@person.community_id)
   end
 
   def new
@@ -27,15 +27,23 @@ class ResidentsController < ApplicationController
     @person = Resident.new(resident_params)
     @person.community_id = commune_id
 
+
     if @person.save
       flash[:notice] = "You signed up successfully."
-      flash[:notice2] = "#{@person.name} was added to the ADD COMMUNE!!!"
+      flash[:notice2] = "#{@person.name} was added to the #{@commune.name} community"
       redirect_to resident_path(@person)
     else
       render "new"
     end
 
   end
+
+
+  def index
+    # presents a list of all Residents
+    @all_people = Resident.all
+  end
+
 
 
 
@@ -45,6 +53,8 @@ class ResidentsController < ApplicationController
         params.require(:resident).permit(:name,
                                         :articles,
                                         :community_id,
+                                        :email,
+                                        :phone,
                                         :password,
                                         :password_confirmation,
                                         :password_digest)

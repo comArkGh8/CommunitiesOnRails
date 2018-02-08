@@ -22,3 +22,16 @@ table#commune th {
   font-weight: bold;
   background-color: wheat;
 }
+
+table#resident {
+  margin: 10px;
+  border-collapse: collapse;
+  width: 100%;
+  border-bottom: 2px solid black;
+}
+
+table#resident th {
+  border: 2px solid white;
+  font-weight: bold;
+  background-color: LightGreen;
+}

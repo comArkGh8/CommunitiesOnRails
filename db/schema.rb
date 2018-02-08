@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 20171218145133) do
     t.string "name"
     t.string "articles"
     t.string "password_digest"
+    t.string "phone"
+    t.string "email"
     t.index ["community_id"], name: "index_residents_on_community_id"
   end
 

@@ -1,0 +1,38 @@
+
+-# = shows a resident's articles
+
+- [:notice, :notice2].each do |key|
+  - unless flash[key].blank?
+    %p{ :class => "flash #{key}" }= flash[key]
+
+%h2 Details for #{@person.name}:
+
+%p
+  belongs to: #{@commune.name}
+  -if @person.email
+    %br
+    email: #{@person.email}
+  -if @person.phone
+    %br
+    phone: #{@person.phone}
+
+
+
+
+%table#resident
+  %thead
+    %tr
+      %th Items available
+      %th Category
+      %th Status
+
+  %tbody
+    - @person.articles.each do |article|
+      %tr
+        %td= article.description
+        %td= article.form
+        %td= article.status
+
+
+Click on an article to change its status or
+= link_to 'Add new article', new_article_path(@person)

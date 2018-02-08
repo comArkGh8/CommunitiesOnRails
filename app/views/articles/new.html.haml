@@ -1,0 +1,24 @@
+-# = gives page to add an article attached to a given resident
+
+
+%h1 Make an article available within the community:
+
+
+%center
+    %br
+    %br
+
+    = form_for @article, :url => {:controller => 'articles', :action => 'create'} do |f|
+        %p
+            = f.label :category
+            %br
+            = f.text_field  :form
+
+
+        -# pass on the resident_id
+        = hidden_field_tag :resident_id, @person.id
+
+        %p.button
+            = f.submit 'make available'
+
+-# = check for errors if needed
