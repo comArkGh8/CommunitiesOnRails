@@ -5,6 +5,7 @@
   - unless flash[key].blank?
     %p{ :class => "flash #{key}" }= flash[key]
 
+
 %h2 Details for #{@person.name}:
 
 %p
@@ -12,7 +13,7 @@
   -if @person.email
     %br
     email: #{@person.email}
-  -if @person.phone
+  -if !@person.phone.empty?
     %br
     phone: #{@person.phone}
 
@@ -31,7 +32,7 @@
       %tr
         %td= article.description
         %td= article.form
-        %td= article.status
+        %td= article.available? ? "available" : "checked out"
 
 
 Click on an article to change its status or

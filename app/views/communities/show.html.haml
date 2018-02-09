@@ -22,11 +22,11 @@
     - @commune.residents.each do |resident|
       - resident.articles.each do |article|
         %tr
-          %td= article.description
+          %td= article.title
           %td= article.form
-          %td= resident
-          %td= article.status
+          %td= resident.name
+          %td= article.available? ? "available" : "checked out"
 
 
 
-= link_to 'Add new resident', new_resident_path(@commune)    
+= link_to 'Add new resident', new_resident_path(@commune)

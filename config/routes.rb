@@ -8,7 +8,11 @@ Rails.application.routes.draw do
           resources :articles
         end
       end
-
+      post :create_article
+      get :article
+      get :new_article
+      get :edit_article
+      # PUT OR PATCH UPDATES 
     end
 
     collection do

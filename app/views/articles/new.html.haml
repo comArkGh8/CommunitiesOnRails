@@ -10,13 +10,27 @@
 
     = form_for @article, :url => {:controller => 'articles', :action => 'create'} do |f|
         %p
+            = f.label :title
+            %br
+            = f.text_field  :title
+        %p
+            = f.label 'short description'
+            %br
+            = f.text_field  :description
+        %p
             = f.label :category
             %br
             = f.text_field  :form
 
 
         -# pass on the resident_id
-        = hidden_field_tag :resident_id, @person.id
+        = f.hidden_field :resident_id, value: @person.id
+
+        -# pass on the community_id
+        = f.hidden_field :community_id, value: @commune.id
+
+        -# as new article, make it immediately available
+        = f.hidden_field :available?, value: true
 
         %p.button
             = f.submit 'make available'

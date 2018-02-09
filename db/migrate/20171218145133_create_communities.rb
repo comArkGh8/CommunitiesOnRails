@@ -21,9 +21,10 @@ class CreateCommunities < ActiveRecord::Migration[5.1]
     create_table :articles do |t|
       t.belongs_to :resident, index: true
       t.belongs_to :community, index: true
+      t.string :title
       t.string :form
       t.string :description
-      t.string :status
+      t.boolean :available?
     end
   end
 end

@@ -15,9 +15,10 @@ ActiveRecord::Schema.define(version: 20171218145133) do
   create_table "articles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "resident_id"
     t.bigint "community_id"
+    t.string "title"
     t.string "form"
     t.string "description"
-    t.string "status"
+    t.boolean "available?"
     t.index ["community_id"], name: "index_articles_on_community_id"
     t.index ["resident_id"], name: "index_articles_on_resident_id"
   end

@@ -1,0 +1,26 @@
+
+
+
+-# = shows an article
+
+- unless flash[:notice].blank?
+  %p{ :class => "flash #{:notice}" }= flash[:notice]
+
+%h2 Details for #{@article.title}:
+
+
+
+
+%table#article
+  %thead
+    %tr
+      %th Title
+      %th Category
+      %th description
+      %th Status
+
+  %tbody
+    %tr
+      %td= @article.form
+      %td= @article.description
+      %td= @article.available? ? "available" : "checked out"
