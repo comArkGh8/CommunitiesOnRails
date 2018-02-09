@@ -21,6 +21,7 @@
 
   %tbody
     %tr
+      %td= @article.title
       %td= @article.form
       %td= @article.description
-      %td= @article.available? ? "available" : "checked out"
+      %td= @article.available ? "available" : "checked out"

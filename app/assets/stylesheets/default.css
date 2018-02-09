@@ -35,3 +35,16 @@ table#resident th {
   font-weight: bold;
   background-color: LightGreen;
 }
+
+table#article {
+  margin: 10px;
+  border-collapse: collapse;
+  width: 100%;
+  border-bottom: 2px solid black;
+}
+
+table#article th {
+  border: 2px solid white;
+  font-weight: bold;
+  background-color: LightBlue;
+}

@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20171218145133) do
     t.string "title"
     t.string "form"
     t.string "description"
-    t.boolean "available?"
+    t.boolean "available"
     t.index ["community_id"], name: "index_articles_on_community_id"
     t.index ["resident_id"], name: "index_articles_on_resident_id"
   end

@@ -13,8 +13,6 @@ class ArticlesController < ApplicationController
     resident_id = params[:id] # retrieve resident ID from URI route
     puts resident_id
     @person=Resident.find(resident_id)
-    puts "the resident is "
-    puts @person
     @commune = Community.find(@person.community_id)
     @article = Article.new
   end
@@ -44,7 +42,7 @@ class ArticlesController < ApplicationController
       def article_params
         params.require(:article).permit(:form,
                                         :title,
-                                        :available?,
+                                        :available,
                                         :community_id,
                                         :resident_id,
                                         :description)

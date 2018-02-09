@@ -4,8 +4,8 @@ class ResidentsController < ApplicationController
 
 
   def show
-    id = params[:id] # retrieve resident ID from URI route
-    @person = Resident.find(id) # look up resident by unique ID
+    resident_id = params[:id] # retrieve resident ID from URI route
+    @person = Resident.find(resident_id) # look up resident by unique ID
     @commune = Community.find(@person.community_id)
   end
 
