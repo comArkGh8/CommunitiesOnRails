@@ -22,7 +22,7 @@
     - @commune.residents.each do |resident|
       - resident.articles.each do |article|
         %tr
-          %td= article.title
+          %td= link_to article.title, article_path(article)
           %td= article.form
           %td= resident.name
           %td= article.available? ? "available" : "checked out"
@@ -30,3 +30,8 @@
 
 
 = link_to 'Add new resident', new_resident_path(@commune)
+
+%br
+%br
+
+Or click on an item to view details or check out an item.
