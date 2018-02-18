@@ -25,3 +25,10 @@
       %td= @article.form
       %td= @article.description
       %td= @article.available ? "available" : "checked out"
+
+%br
+%br
+
+  = form_for @article, :url => {:controller => 'articles', :action => 'update'} do |f|
+    %p.button
+        = f.submit 'request article'

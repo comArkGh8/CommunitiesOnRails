@@ -7,6 +7,7 @@ class ArticlesController < ApplicationController
   def show
     id = params[:id] # retrieve article ID from URI route
     @article = Article.find(id) # look up resident by unique ID
+
   end
 
   def new
@@ -24,14 +25,18 @@ class ArticlesController < ApplicationController
   def create
     @article=Article.new(article_params)
 
-    puts @article
-
     if @article.save
       flash[:notice] = "#{@article.title} was added to your items list"
       redirect_to article_path(@article)
     else
       render "new"
     end
+  end
+
+  def edit
+    @article=Article.new(article_params)
+
+    # does not render show, because want the owner to see the edits
   end
 
 
