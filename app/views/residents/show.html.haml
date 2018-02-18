@@ -31,8 +31,10 @@
   %tbody
     - @person.articles.each do |article|
       %tr
-        IM HERE!!!
-        %td= link_to article.title, article_path(article)
+        -if article.resident_id = @person.id
+          %td= link_to article.title, edit_article_path(article)
+        -else
+          %td= link_to article.title, article_path(article)
         %td= article.description
         %td= article.form
         %td= article.available ? "available" : "checked out"

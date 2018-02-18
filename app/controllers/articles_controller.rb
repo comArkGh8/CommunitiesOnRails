@@ -39,7 +39,21 @@ class ArticlesController < ApplicationController
     # does not render show, because want the owner to see the edits
   end
 
-
+  def update
+    # updates request array of article
+    res_id = @article.resident_id
+    if @article.request_array.include? res_id
+      flash[:notice] = "You already have an outstanding request for #{@article.title}"
+      redirect_to article_path(@article)
+    else
+      @article.request_array << res_id
+      if @article.request_array.include? res_id
+        flash[:notice] = "#{@article.title} was added to your items list"
+        redirect_to article_path(@article)
+      else
+        flash[:notice] = "You cannot request #{@article.title}"
+        redirect_to article_path(@article)
+  end
 
 
   private
