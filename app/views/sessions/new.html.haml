@@ -1,5 +1,8 @@
 
 
+- unless flash[:danger].blank?
+  %p{ :class => "flash danger" }= flash[:danger]
+
 %h1 Login here as a registered resident:
 
 =form_for(:session, url: login_path) do |f|

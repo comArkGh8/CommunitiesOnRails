@@ -4,6 +4,11 @@ class SessionsController < ApplicationController
 
   def new
 
+
+  end
+
+  def create
+
     users = Resident.where(name: params[:session][:name])
     if users.size > 1 do
       @commune_list = Array.new
@@ -20,12 +25,16 @@ class SessionsController < ApplicationController
       @user = Resident.where(name: params[:session][:name], community_id: commune_id)
       # see if can authenticate the user
       if @user && @user.authenticate(params[:session][:password])
+        # Log the user in (save res_id and comm_id
+        log_in @user
+        # and redirect to the user's show page.
+        redirect_to @user
+      else
+        flash.now[:danger] = 'Invalid email/password combination'
+        render 'new'
 
-      # Log the user in and redirect to the user's show page.
-  end
 
-  def create
-    render 'new'
+
   end
 
   def destroy
