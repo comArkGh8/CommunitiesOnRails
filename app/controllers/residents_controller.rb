@@ -31,7 +31,9 @@ class ResidentsController < ApplicationController
     if @person.save
       flash[:notice] = "You signed up successfully."
       flash[:notice2] = "#{@person.name} was added to the #{@commune.name} community"
-      redirect_to resident_path(@person)
+      # save log in information from SessionsHelper
+      log_in(@person)
+      redirect_to @person
     else
       render "new"
     end
