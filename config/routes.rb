@@ -12,7 +12,7 @@ Rails.application.routes.draw do
       get :article
       get :new_article
       get :edit_article
-      # PUT OR PATCH UPDATES 
+      # PUT OR PATCH UPDATES
     end
 
     collection do
@@ -21,6 +21,15 @@ Rails.application.routes.draw do
 
 
   end
+
+
+
+  get    '/login',   to: 'sessions#new'
+  post   '/login',   to: 'sessions#create'
+  delete '/logout',  to: 'sessions#destroy'
+
+
+
 
 
   # You can have the root of your site routed with "root"
