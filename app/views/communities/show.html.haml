@@ -22,7 +22,10 @@
     - @commune.residents.each do |resident|
       - resident.articles.each do |article|
         %tr
-          %td= link_to article.title, article_path(article)
+          -if @current_resident == resident
+            %td link_to article.title, edit_article_path(article)
+          -else
+            %td= link_to article.title, article_path(article)
           %td= article.form
           %td= resident.name
           %td= article.available? ? "available" : "checked out"
