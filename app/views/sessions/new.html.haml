@@ -1,0 +1,20 @@
+
+
+%h1 Login here as a registered resident:
+
+=form_for(:session, url: login_path) do |f|
+  = f.label :res_name
+  = f.text_field :name, class: 'form-control'
+  = f.label :password
+  = f.password_field :password, class: 'form-control'
+  = f.submit "Log in", class: "btn btn-primary"
+
+-if users.size > 1
+  Choose your community:
+  %br
+  =form_tag login_path, method: :get, id: 'choose_commune_buttons' do
+    -@commune_list.each do |commune|
+      =radio_button_tag(:commune_id, commune.id)
+      =label_tag('which_commune', "#{commune.name}")
+      %br
+  =submit_tag 'enter choice', id: 'commune_choice', class: 'button_class'
