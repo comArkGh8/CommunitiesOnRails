@@ -8,13 +8,16 @@
     %br
     %br
 
-    = form_tag show_commune_path do
-        = label :commune, :name, 'Community name'
-        = text_field :commune, :name
-        = password_field :password_2, 'Password'
+    = form_for(:commune, url: show_commune_path) do |f|
+        = f.label :commune_name, 'Community name'
+        = f.text_field :name
+        = f.label :password
+        = f.password_field :password, class: 'form-control'
 
         %br
-        = submit_tag 'Submit'
+        = f.submit "Submit", class: "btn btn-primary"
+
+
 
 %center
     %txt
