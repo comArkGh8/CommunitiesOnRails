@@ -12,7 +12,7 @@
   = f.password_field :password, class: 'form-control'
   = f.submit "Log in", class: "btn btn-primary"
 
--if users.size > 1
+-if @users && @users.size > 1
   Choose your community:
   %br
   =form_tag login_path, method: :get, id: 'choose_commune_buttons' do
