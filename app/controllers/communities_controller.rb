@@ -1,15 +1,7 @@
 class CommunitiesController < ApplicationController
 
 
-  def show
-    id = params[:id] # retrieve community ID from URI route
-    @commune = Community.find(id) # look up commune by unique ID
 
-    # get the current logged in resident (if any)
-    @current_resident = current_user
-    
-    # will render app/views/communities/show.<extension> by default
-  end
 
   def new
     # want to be able to search
@@ -37,15 +29,21 @@ class CommunitiesController < ApplicationController
   end
 
   def show
-    id = params[:id] # retrieve ID from URI route
-    @commune = Community.find(id) # look up community by unique ID
+    if params[:id]
+      id = params[:id] # retrieve ID from URI route
+      @commune = Community.find(id) # look up community by unique ID
+    elsif params[:name]
+      @commune =Community.where(name: params[:name])
+    end
+
+    @current_resident = current_user
     # will render app/views/communities/show.<extension> by default
   end
 
   private
 
       def community_params
-        params.require(:commune).permit(:name,
+        params.permit(:name,
                                         :password,
                                         :password_confirmation,
                                         :password_digest,

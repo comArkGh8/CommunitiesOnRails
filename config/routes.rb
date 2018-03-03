@@ -19,10 +19,9 @@ Rails.application.routes.draw do
       get :search
     end
 
-
   end
 
-
+  get 'community' => 'communities#show', :as => 'show_commune'
 
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
