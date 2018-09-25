@@ -31,6 +31,7 @@ class ArticlesController < ApplicationController
     else
       render "new"
     end
+    
   end
 
   def edit
@@ -53,6 +54,10 @@ class ArticlesController < ApplicationController
       else
         flash[:notice] = "You cannot request #{@article.title}"
         redirect_to article_path(@article)
+      end
+
+    end
+
   end
 
 

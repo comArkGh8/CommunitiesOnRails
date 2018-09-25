@@ -7,9 +7,15 @@
 
 %h2 Details for #{@commune.name}:
 
+%br
+%br
+%h3 The following residents are registered at #{@commune.name}:
+- @commune.residents.each do |resident|
+  %td= link_to resident.name, resident_path(resident) 
+  %tr
 
-
-
+%br
+%br
 %table#commune
   %thead
     %tr

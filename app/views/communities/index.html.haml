@@ -8,7 +8,7 @@
     %br
     %br
 
-    = form_for(:commune, url: show_commune_path) do |f|
+    = form_for(@commune, url: show_commune_path(@commune), method: "get" ) do |f|
         = f.label :commune_name, 'Community name'
         = f.text_field :name
         = f.label :password

@@ -30,9 +30,9 @@ class CommunitiesController < ApplicationController
     if params[:id]
       id = params[:id] # retrieve ID from URI route
       @commune = Community.find(id) # look up community by unique ID
-    elsif params[:commune][:name]
-      @commune =Community.where(name: params[:commune][:name])
-      redirect_to community_path(@commune)
+    elsif params[:community][:name]
+      @commune =Community.where(name: params[:community][:name]).first
+      #redirect_to community_path(@commune)
     end
 
     @current_resident = current_user
@@ -42,7 +42,7 @@ class CommunitiesController < ApplicationController
   private
 
       def community_params
-        params.require(:commune).permit(:name,
+        params.require(:community).permit(:name,
                                         :password,
                                         :password_confirmation,
                                         :password_digest,
