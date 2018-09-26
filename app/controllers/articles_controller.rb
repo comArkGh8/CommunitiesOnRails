@@ -31,11 +31,12 @@ class ArticlesController < ApplicationController
     else
       render "new"
     end
-    
+
   end
 
   def edit
-    @article=Article.new(article_params)
+    article_id = params[:id]
+    @article=Article.find(article_id)
 
     # does not render show, because want the owner to see the edits
   end

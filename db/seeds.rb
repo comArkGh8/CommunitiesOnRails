@@ -7,8 +7,10 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-our_community = 
-  {:name => 'peace-and-love', :login_pwd => 'mouseandsquirrel', 
+our_community =
+  {:name => 'hippie',
+    :password => 'dariush1318',
+    :password_confirmation => 'dariush1318',
     :street => 'big street', :number => '123'}
 
 
@@ -17,18 +19,19 @@ commune=Community.create!(our_community)
 
 
 
-saul = 
-  { :name => 'saul duphraigne'}
+saul =
+  { :name => 'saul',
+    :password => 'dariush1318',
+    :password_confirmation => 'dariush1318'}
 
 
 
 
 me = commune.residents.create!(saul)
 
-kapital= 
-  { :community => commune,  :form => 'book' , :description => 'Das Kapital',
-  :status => 'available'
+kapital=
+  { :community => commune,  :form => 'book' , :description => 'socialist book',
+    :title => 'Das Kapital', :available => true
   }
 
 me.articles.create!(kapital)
-

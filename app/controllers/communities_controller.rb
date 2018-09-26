@@ -32,7 +32,6 @@ class CommunitiesController < ApplicationController
       @commune = Community.find(id) # look up community by unique ID
     elsif params[:community][:name]
       @commune =Community.where(name: params[:community][:name]).first
-      #redirect_to community_path(@commune)
     end
 
     @current_resident = current_user

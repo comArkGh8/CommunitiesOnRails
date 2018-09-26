@@ -14,9 +14,9 @@
     Do you want to accept the request and mark the item as checked-out?
     %center
       =form_tag article_path, method: :update, id: 'checkout y/n'
-        =radio_button_tag (:available, false)
+        =radio_button_tag :available, false
         =label_tag('accept_request',"accept")
-        =radio_button_tag (:available, false)
+        =radio_button_tag :available, false
         =label_tag('reject_request',"reject")
 
 
@@ -24,21 +24,21 @@
 %h2 Enter in the fields you want to change for #{@article.title}:
 
 = form_for @article, :url => {:controller => 'articles', :action => 'update'} do |f|
-    %p
-        Current title: #{@article.title}
-        %br
-        = f.label 'New title'
-        %br
-        = f.text_field  :title
-    %p
-        Current description: #{@article.description}
-        %br
-        = f.label 'new description'
-        %br
-        = f.text_field  :description
-    %p
-        Current category lisiting: #{@article.form}
-        %br
-        = f.label 'new category'
-        %br
-        = f.text_field  :form
+  %p
+    Current title: #{@article.title}
+    %br
+    = f.label 'New title'
+    %br
+    = f.text_field  :title
+  %p
+    Current description: #{@article.description}
+    %br
+    = f.label 'new description'
+    %br
+    = f.text_field  :description
+  %p
+    Current category listing: #{@article.form}
+    %br
+    = f.label 'new category'
+    %br
+    = f.text_field  :form
