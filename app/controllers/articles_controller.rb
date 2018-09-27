@@ -43,22 +43,35 @@ class ArticlesController < ApplicationController
 
   def update
     # updates request array of article
-    res_id = @article.resident_id
-    if @article.request_array.include? res_id
-      flash[:notice] = "You already have an outstanding request for #{@article.title}"
-      redirect_to article_path(@article)
-    else
-      @article.request_array << res_id
+    article_id = params[:id]
+    @article=Article.find(article_id)
+    res_id = @article.resident.id
+
+    if @article.request_array
       if @article.request_array.include? res_id
-        flash[:notice] = "#{@article.title} was added to your items list"
+        flash[:notice] = "You already have an outstanding request for #{@article.title}"
         redirect_to article_path(@article)
       else
-        flash[:notice] = "You cannot request #{@article.title}"
-        redirect_to article_path(@article)
-      end
+        @article.request_array << res_id
+        if @article.request_array.include? res_id
+          flash[:notice] = "#{@article.title} was added to your items list"
+          redirect_to article_path(@article)
+        else
+          flash[:notice] = "You cannot request #{@article.title}"
+          redirect_to article_path(@article)
+        end
 
+      end
     end
 
+    new_title = params[:article][:title]
+    @article.update(title: new_title)
+    new_descript = params[:article][:description]
+    @article.update(description: new_descript)
+    new_cat = params[:article][:form]
+    @article.update(form: new_cat)
+
+    redirect_to article_path(@article)
   end
 
 
@@ -73,5 +86,6 @@ class ArticlesController < ApplicationController
                                         :description,
                                         :request_array)
       end
+
 
 end

@@ -13,8 +13,13 @@
       #{person} has requested #{@article.title}
       %br
       Do you want to accept the request and mark the item as checked-out?
-
-
+      %center
+      =form_tag article_path, method: :update, id: 'checkout y/n' do
+        =radio_button_tag :available, false
+        =label_tag('accept_request',"accept")
+        =radio_button_tag :available, false
+        =label_tag('reject_request',"reject")
+        =submit_tag 'Save'
 
 %h2 Enter in the fields you want to change for #{@article.title}:
 
@@ -37,3 +42,4 @@
     = f.label 'new category'
     %br
     = f.text_field  :form
+  =f.submit
