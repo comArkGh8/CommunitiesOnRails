@@ -9,8 +9,8 @@
 
 our_community =
   {:name => 'hippie',
-    :password => 'dariush1318',
-    :password_confirmation => 'dariush1318',
+    :password => 'saul1984',
+    :password_confirmation => 'saul1984',
     :street => 'big street', :number => '123'}
 
 
@@ -21,8 +21,8 @@ commune=Community.create!(our_community)
 
 saul =
   { :name => 'saul',
-    :password => 'dariush1318',
-    :password_confirmation => 'dariush1318'}
+    :password => 'saul1984',
+    :password_confirmation => 'saul1984'}
 
 
 

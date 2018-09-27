@@ -70,7 +70,8 @@ class ArticlesController < ApplicationController
                                         :available,
                                         :community_id,
                                         :resident_id,
-                                        :description)
+                                        :description,
+                                        :request_array)
       end
 
 end

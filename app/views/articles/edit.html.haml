@@ -7,17 +7,12 @@
 // requests are in array (person)
 // TODO can only check out to one person
 
-- request_array.each do |person|
-  %p
-    #{person} has requested #{@article.title}
-    %br
-    Do you want to accept the request and mark the item as checked-out?
-    %center
-      =form_tag article_path, method: :update, id: 'checkout y/n'
-        =radio_button_tag :available, false
-        =label_tag('accept_request',"accept")
-        =radio_button_tag :available, false
-        =label_tag('reject_request',"reject")
+- if @article.request_array
+  - @article.request_array.each do |person|
+    %p
+      #{person} has requested #{@article.title}
+      %br
+      Do you want to accept the request and mark the item as checked-out?
 
 
 
