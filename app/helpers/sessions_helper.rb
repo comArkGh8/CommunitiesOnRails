@@ -12,6 +12,11 @@ module SessionsHelper
     @current_user ||= Resident.where(id: session[:user_id], community_id: session[:commune_id])
   end
 
+  # Returns the current logged-in user id (if any).
+  def current_id
+    session[:user_id]
+  end
+
   # Returns the commune associated to the current logged-in user (if any).
   def current_commune
     @current_commune ||= Community.where(id: session[:commune_id])

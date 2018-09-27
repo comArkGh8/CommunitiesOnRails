@@ -64,14 +64,24 @@ class ArticlesController < ApplicationController
       end
     end
 
-    new_title = params[:article][:title]
-    @article.update(title: new_title)
-    new_descript = params[:article][:description]
-    @article.update(description: new_descript)
-    new_cat = params[:article][:form]
-    @article.update(form: new_cat)
+    # only if owner
+    # check if current_user (defined in sessions helper)
+    # is same as resident to which article belongs
 
-    redirect_to article_path(@article)
+    res_id = @article.resident.id
+    if res_id == current_id
+      new_title = params[:article][:title]
+      @article.update(title: new_title)
+      new_descript = params[:article][:description]
+      @article.update(description: new_descript)
+      new_cat = params[:article][:form]
+      @article.update(form: new_cat)
+      redirect_to article_path(@article)
+    else
+      flash[:notice] = "Only the owner can change details of  #{@article.title}"
+      redirect_to article_path(@article)
+    end
+
   end
 
 
