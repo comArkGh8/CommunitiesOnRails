@@ -45,19 +45,19 @@ class ArticlesController < ApplicationController
   def ask_for
     article_id = params[:id]
     @article=Article.find(article_id)
-    res_id = @article.resident.id
+    res_name = Resident.find(@article.resident.id)[:name]
 
     if @article.request_array
-      if @article.request_array.include? res_id.to_s
-        flash[:notice] = "You already have an outstanding request for #{@article.title}"
+      if @article.request_array.include? res_name
+        flash[:notice] = "#{res_name}, you already have an outstanding request for #{@article.title}"
         redirect_to article_path(@article)
       end
     # else there is no request array yet, so create
     else
       new_request_array = Array.new()
-      new_request_array.push(res_id)
+      new_request_array.push(res_name)
       @article.update(request_array: new_request_array)
-      if @article.request_array.include? res_id.to_s
+      if @article.request_array.include? res_name
         flash[:notice] = "#{@article.title} was added to your items requested list"
         redirect_to article_path(@article)
       else
