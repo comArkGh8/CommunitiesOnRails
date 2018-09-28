@@ -48,7 +48,7 @@ class ArticlesController < ApplicationController
     res_id = @article.resident.id
 
     if @article.request_array
-      if @article.request_array.include? res_id
+      if @article.request_array.include? res_id.to_s
         flash[:notice] = "You already have an outstanding request for #{@article.title}"
         redirect_to article_path(@article)
       end
@@ -56,7 +56,7 @@ class ArticlesController < ApplicationController
     else
       new_request_array = Array.new()
       new_request_array.push(res_id)
-      @article.request_array = new_request_array
+      @article.update(request_array: new_request_array)
       if @article.request_array.include? res_id.to_s
         flash[:notice] = "#{@article.title} was added to your items requested list"
         redirect_to article_path(@article)
