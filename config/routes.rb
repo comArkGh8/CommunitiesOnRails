@@ -5,7 +5,12 @@ Rails.application.routes.draw do
     member do
       resources :residents do
         member do
-          resources :articles
+          resources :articles do
+            member do
+              patch :ask_for
+              put :ask_for
+            end
+          end
         end
       end
       post :create_article

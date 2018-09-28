@@ -29,6 +29,6 @@
 %br
 %br
 
-  = form_for @article, :url => {:controller => 'articles', :action => 'update'} do |f|
+  = form_for @article, :url => {:controller => 'articles', :action => 'ask_for'} do |f|
     %p.button
       = f.submit 'request article'

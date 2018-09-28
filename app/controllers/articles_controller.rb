@@ -41,8 +41,8 @@ class ArticlesController < ApplicationController
     # does not render show, because want the owner to see the edits
   end
 
-  def update
-    # updates request array of article
+  # updates request array of article
+  def ask_for
     article_id = params[:id]
     @article=Article.find(article_id)
     res_id = @article.resident.id
@@ -51,23 +51,33 @@ class ArticlesController < ApplicationController
       if @article.request_array.include? res_id
         flash[:notice] = "You already have an outstanding request for #{@article.title}"
         redirect_to article_path(@article)
+      end
+    # else there is no request array yet, so create
+    else
+      new_request_array = Array.new()
+      new_request_array.push(res_id)
+      @article.request_array = new_request_array
+      if @article.request_array.include? res_id.to_s
+        flash[:notice] = "#{@article.title} was added to your items requested list"
+        redirect_to article_path(@article)
       else
-        @article.request_array << res_id
-        if @article.request_array.include? res_id
-          flash[:notice] = "#{@article.title} was added to your items list"
-          redirect_to article_path(@article)
-        else
-          flash[:notice] = "You cannot request #{@article.title}"
-          redirect_to article_path(@article)
-        end
-
+        flash[:notice] = "You cannot request #{@article.title}"
+        redirect_to article_path(@article)
       end
     end
+
+  end
+
+
+  def update
+
 
     # only if owner
     # check if current_user (defined in sessions helper)
     # is same as resident to which article belongs
-
+    article_id = params[:id]
+    @article=Article.find(article_id)
+    res_id = @article.resident.id
     res_id = @article.resident.id
     if res_id == current_id
       new_title = params[:article][:title]
