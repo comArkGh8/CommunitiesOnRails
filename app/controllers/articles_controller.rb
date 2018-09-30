@@ -12,7 +12,6 @@ class ArticlesController < ApplicationController
 
   def new
     resident_id = params[:id] # retrieve resident ID from URI route
-    puts resident_id
     @person=Resident.find(resident_id)
     @commune = Community.find(@person.community_id)
     @article = Article.new
@@ -24,7 +23,8 @@ class ArticlesController < ApplicationController
 
   def create
     @article=Article.new(article_params)
-
+    new_request_array = ''
+    @article.update(request_array: new_request_array)
     if @article.save
       flash[:notice] = "#{@article.title} was added to your items list"
       redirect_to article_path(@article)
@@ -37,7 +37,16 @@ class ArticlesController < ApplicationController
   def edit
     article_id = params[:id]
     @article=Article.find(article_id)
-
+    orig_request_array = @article.request_array
+    request_id_array = return_array(orig_request_array)
+    # now make new array of names
+    @names_of_request_array = Array.new()
+    if request_id_array.length >=1
+      request_id_array.each do |res_num|
+        name_to_add = Resident.find(res_num.to_i)
+        @names_of_request_array.push(name_to_add)
+      end
+    end
     # does not render show, because want the owner to see the edits
   end
 
@@ -45,25 +54,16 @@ class ArticlesController < ApplicationController
   def ask_for
     article_id = params[:id]
     @article=Article.find(article_id)
-    res_name = Resident.find(@article.resident.id)[:name]
-
-    if @article.request_array
-      if @article.request_array.include? res_name
-        flash[:notice] = "#{res_name}, you already have an outstanding request for #{@article.title}"
-        redirect_to article_path(@article)
-      end
-    # else there is no request array yet, so create
+    res_id = @article.resident.id
+    res_name = Resident.find(res_id).name
+    request_id_array = return_array(@article.request_array)
+    if request_id_array.include? res_id.to_s
+      flash[:notice] = "#{res_name}, you already have an outstanding request for #{@article.title}"
+      redirect_to article_path(@article)
+    #else add the name to the Array
     else
-      new_request_array = Array.new()
-      new_request_array.push(res_name)
-      @article.update(request_array: new_request_array)
-      if @article.request_array.include? res_name
-        flash[:notice] = "#{@article.title} was added to your items requested list"
-        redirect_to article_path(@article)
-      else
-        flash[:notice] = "You cannot request #{@article.title}"
-        redirect_to article_path(@article)
-      end
+      add_id_to_list(@article, res_id)
+      redirect_to article_path(@article)
     end
 
   end

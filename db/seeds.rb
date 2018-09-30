@@ -31,7 +31,7 @@ me = commune.residents.create!(saul)
 
 kapital=
   { :community => commune,  :form => 'book' , :description => 'socialist book',
-    :title => 'Das Kapital', :available => true
+    :title => 'Das Kapital', :available => true, :request_array => ''
   }
 
 me.articles.create!(kapital)

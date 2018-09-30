@@ -24,8 +24,9 @@ class CreateCommunities < ActiveRecord::Migration[5.1]
       t.string :title
       t.string :form
       t.string :description
-      t.text :request_array
+      t.string :request_array
       t.boolean :available
     end
+
   end
 end
